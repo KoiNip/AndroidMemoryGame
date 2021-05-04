@@ -3,19 +3,30 @@ package com.memory.thevoid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Button mStartButton;
     private Button mHighSchoreButton;
     private Button mToggleMusicButton;
+    private MediaPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mToggleMusicButton = findViewById(R.id.music_button);
+        mToggleMusicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toggleMusic(view);
+            }
+        });
 
         mStartButton = (Button)findViewById(R.id.start_button);
         mStartButton.setOnClickListener(new View.OnClickListener() {
@@ -25,5 +36,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    public void toggleMusic(View v) {
+        if (player == null) {
+            player = MediaPlayer.create(this, R.raw.song1);
+            player.setVolume(100, 100);
+            player.start();
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    player.start();
+                }
+            });
+            Toast.makeText(this, "Song is now playing!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            player.release();
+            player = null;
+            Toast.makeText(this, "MediaPlayer released!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

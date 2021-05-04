@@ -1,11 +1,13 @@
 package com.memory.thevoid;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -190,4 +192,9 @@ public class GameActivity8 extends AppCompatActivity {
             numOfRevealedCards++;   //When we reveal a card, increment the number of revealed cards
         }
     }
+
+    /* @Override
+    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+    } */
 }
