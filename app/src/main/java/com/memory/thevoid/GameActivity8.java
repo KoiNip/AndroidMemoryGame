@@ -90,9 +90,27 @@ public class GameActivity8 extends AppCompatActivity {
         Collections.shuffle(imageList); //Randomizes the images, placing them in random places
         imageList.toArray(images);  //Places the shuffled images back into images[] array
 
+        if(savedInstanceState != null) {
+            images = (Integer[]) savedInstanceState.getSerializable("images");  //Restores all relevent values
+            score = savedInstanceState.getInt("score");
+            mScore.setText(savedInstanceState.getString("scoreView"));
+            numOfRevealedCards = savedInstanceState.getInt("numOfRevealedCards");
+
+            boolean[] revealed = (boolean[]) savedInstanceState.getSerializable("revealed");    //Gets the revealed status of each card
+            boolean[] matched = (boolean[]) savedInstanceState.getSerializable("matched");  //Gets the matched status of each card
+            int tempIndex = 0;
+            for(MemoryCard card : deck) {
+                card.setRevealed(revealed[tempIndex]);  //Sets the revealed status of each card
+                card.setMatched(matched[tempIndex]);    //Sets the  matched status of each card
+                tempIndex++;
+            }
+        }
+
         for(int i = 0; i < buttons.length; i++) {
             deck[i].setCardValue(images[i]); //Sets the value for each MemoryCard
         }
+
+        updateViews(buttons);   //Updates views just in case there was a saved instance state
 
         int index = 0;  //Using "modern" for loop, must keep track of index separately
 
@@ -171,7 +189,6 @@ public class GameActivity8 extends AppCompatActivity {
             indexOfRevealedCard = -1;   //Reset the value of the saved card
         }
 
-        Log.i("GameActivity8", String.valueOf(numOfRevealedCards));
         card.setRevealed(!card.isRevealed());   //After the user clicks a card, reveal it
     }
 
@@ -208,36 +225,22 @@ public class GameActivity8 extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable("deck", deck);
-        outState.putSerializable("buttons", buttons);
-        outState.putSerializable("images", images);
-        outState.putString("score", mScore.getText().toString());
-        outState.putInt("numOfRevealedCards", numOfRevealedCards);
-
         super.onSaveInstanceState(outState);
-    }
 
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        deck = (MemoryCard[]) savedInstanceState.getSerializable("deck");
-        buttons = (ImageButton[]) savedInstanceState.getSerializable("buttons");
-        images = (Integer[]) savedInstanceState.getSerializable("images");
-        mScore.setText(savedInstanceState.getString("score"));
-        numOfRevealedCards = savedInstanceState.getInt("numOfRevealedCards");
-
-        int index = 0;  //Using "modern" for loop, must keep track of index separately
-
-        //This for loop adds buttonListeners to all the buttons. You should be able to copy paste this to other activities to create more pages
-        for (ImageButton button : buttons) {
-            // int finalIndex = index; //JVM gets angry if you use a non-final int, so we cast it to a final int
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    updateViews(buttons);
-                }
-            });
-            index++;  //Increment index
+        int index = 0;
+        boolean[] revealed = {false, false, false, false, false, false, false, false};
+        boolean[] matched = {false, false, false, false, false, false, false, false};
+        for(MemoryCard card : deck) {   //Stores the revealed and matched status of each card in an array
+            revealed[index] = card.isRevealed();
+            matched[index] = card.isMatched();
+            index++;
         }
+
+        outState.putSerializable("images", images); //Saves all relevant values to be restored after rotation
+        outState.putInt("score", score);
+        outState.putInt("numOfRevealedCards", numOfRevealedCards);
+        outState.putString("scoreView", mScore.getText().toString());
+        outState.putSerializable("revealed", revealed);
+        outState.putSerializable("matched", matched);
     }
 }
