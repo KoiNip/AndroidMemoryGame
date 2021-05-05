@@ -5,15 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Button mStartButton;
-    private Button mHighSchoreButton;
+    private Button mHighScoreButton;
     private Button mToggleMusicButton;
-    private MediaPlayer player;
+    private static MediaPlayer player;
+    private final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +48,13 @@ public class MainActivity extends AppCompatActivity {
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
-                    player.start();
+                    mediaPlayer.start();
                 }
             });
             Toast.makeText(this, "Song is now playing!", Toast.LENGTH_SHORT).show();
         }
         else {
+            player.stop();
             player.release();
             player = null;
             Toast.makeText(this, "MediaPlayer released!", Toast.LENGTH_SHORT).show();

@@ -25,6 +25,10 @@ public class GameActivity8 extends AppCompatActivity {
     int indexOfRevealedCard = -1;   //Stores location of currently revealed card, -1 if there is no currently revealed card
     int score = 0;  //Stores score
     int numOfRevealedCards = 0;  //Stores the number of currently revealed cards, used for TryAgain button
+
+    // Size could be initialized with a different value for larger or smaller decks
+    final int SIZE = 8;
+
     //Create the necessary buttons
     ImageButton mButton1;
     ImageButton mButton2;
@@ -37,12 +41,17 @@ public class GameActivity8 extends AppCompatActivity {
     //Creates the "deck" of MemoryCard objects
     MemoryCard[] deck = {new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard()};
 
+    //Create an array of the images, with two of each because we need pairs
+    Integer[] images = {R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast,
+            R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast};
+
+    ImageButton[] buttons; //Create an array of ImageButtons
+
     //Other activity elements
     TextView mScore;
     Button mTryAgain;
     Button mEndGame;
     Button mNewGame;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,26 +69,33 @@ public class GameActivity8 extends AppCompatActivity {
         mButton7 = (ImageButton) findViewById(R.id.card_seven);
         mButton8 = (ImageButton) findViewById(R.id.card_eight);
 
+        // Initialize array of image buttons
+        buttons = new ImageButton[SIZE];
+        buttons[0] = mButton1;
+        buttons[1] = mButton2;
+        buttons[2] = mButton3;
+        buttons[3] = mButton4;
+        buttons[4] = mButton5;
+        buttons[5] = mButton6;
+        buttons[6] = mButton7;
+        buttons[7] = mButton8;
+
         //Attach other elements to XML counterparts
         mTryAgain = (Button) findViewById(R.id.try_again_button);
         mNewGame = (Button) findViewById(R.id.new_game_button);
         mEndGame = (Button) findViewById(R.id.end_game_button);
         mScore = (TextView) findViewById(R.id.score_view);
 
-        ImageButton[] buttons = {mButton1, mButton2, mButton3, mButton4, mButton5, mButton6, mButton7, mButton8};   //Create an array of ImageButtons
-
-        //Create an array of the images, with two of each because we need pairs
-        Integer[] images = {R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast,
-                            R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast};
         List<Integer> imageList = Arrays.asList(images);    //"Cast" that array into a list so we can use the shuffle function
         Collections.shuffle(imageList); //Randomizes the images, placing them in random places
         imageList.toArray(images);  //Places the shuffled images back into images[] array
 
-        for(int i = 0; i<buttons.length; i++) {
-            deck[i] = new MemoryCard(images[i]);    //Sets the value for each MemoryCard
+        for(int i = 0; i < buttons.length; i++) {
+            deck[i].setCardValue(images[i]); //Sets the value for each MemoryCard
         }
 
-        int index = 0;  //Using "modern" for loop, must keep track of index separatley
+        int index = 0;  //Using "modern" for loop, must keep track of index separately
+
         //This for loop adds buttonListeners to all the buttons. You should be able to copy paste this to other activities to create more pages
         for (ImageButton button : buttons) {
             int finalIndex = index; //JVM gets angry if you use a non-final int, so we cast it to a final int
@@ -93,7 +109,7 @@ public class GameActivity8 extends AppCompatActivity {
                     updateViews(buttons);
                 }
             });
-            index++;    //Increment index
+            index++;  //Increment index
         }
 
         //Set listeners for other buttons
@@ -105,22 +121,19 @@ public class GameActivity8 extends AppCompatActivity {
                     updateViews(buttons);   //Update view to reflect that
                     numOfRevealedCards = 0; //There are now 0 revealed cards, update int to reflect that
                 }
-
             }
         });
         mNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(getIntent()); //These two lines of code refresh the activity, effectivly restarting it
-
+                startActivity(getIntent()); //These two lines of code refresh the activity, effectively restarting it
             }
         });
         mEndGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(GameActivity8.this, MainActivity.class);
-                startActivity(i);   //Return to MainActivity
+                finish();
             }
         });
     }
@@ -193,8 +206,38 @@ public class GameActivity8 extends AppCompatActivity {
         }
     }
 
-    /* @Override
-    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
-    } */
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable("deck", deck);
+        outState.putSerializable("buttons", buttons);
+        outState.putSerializable("images", images);
+        outState.putString("score", mScore.getText().toString());
+        outState.putInt("numOfRevealedCards", numOfRevealedCards);
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        deck = (MemoryCard[]) savedInstanceState.getSerializable("deck");
+        buttons = (ImageButton[]) savedInstanceState.getSerializable("buttons");
+        images = (Integer[]) savedInstanceState.getSerializable("images");
+        mScore.setText(savedInstanceState.getString("score"));
+        numOfRevealedCards = savedInstanceState.getInt("numOfRevealedCards");
+
+        int index = 0;  //Using "modern" for loop, must keep track of index separately
+
+        //This for loop adds buttonListeners to all the buttons. You should be able to copy paste this to other activities to create more pages
+        for (ImageButton button : buttons) {
+            // int finalIndex = index; //JVM gets angry if you use a non-final int, so we cast it to a final int
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    updateViews(buttons);
+                }
+            });
+            index++;  //Increment index
+        }
+    }
 }
