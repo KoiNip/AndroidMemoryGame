@@ -133,7 +133,7 @@ public class GameActivity8 extends AppCompatActivity {
         mEndGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                onBackPressed();
             }
         });
     }
