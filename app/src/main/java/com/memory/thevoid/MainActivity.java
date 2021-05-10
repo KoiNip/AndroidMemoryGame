@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             case R.id.tile6:
                 return true;
             case R.id.tile8:
-                intent = new Intent(this, GameActivity.class);
+                intent = new Intent(this, GameActivity8.class);
                 startActivity(intent);
                 return true;
             case R.id.tile10:
