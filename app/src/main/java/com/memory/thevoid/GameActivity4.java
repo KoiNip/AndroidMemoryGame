@@ -286,6 +286,7 @@ public class GameActivity4 extends AppCompatActivity implements PopupMenu.OnMenu
 
     public void openDialog(View view) {
         Custom_Dialog custom_dialog = new Custom_Dialog();
+        custom_dialog.setScore(getScore());
         custom_dialog.show(getSupportFragmentManager(), null);
     }
 

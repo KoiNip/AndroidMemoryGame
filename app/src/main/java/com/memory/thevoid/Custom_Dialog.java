@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -27,6 +28,7 @@ import java.util.Scanner;
 public class Custom_Dialog extends AppCompatDialogFragment {
 
     private EditText username;
+    private int score = 0;
 
     @NonNull
     @Override
@@ -48,7 +50,7 @@ public class Custom_Dialog extends AppCompatDialogFragment {
                         }
 
                         try {
-                            saveScore(username.getText().toString() + " " + GameActivity8.getScore(), GameActivity8.getScore());
+                            saveScore(username.getText().toString() + " " + score, score);
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         } catch (IOException e) {
@@ -62,9 +64,14 @@ public class Custom_Dialog extends AppCompatDialogFragment {
         return builder.create();
     }
 
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     public void saveScore(String text, int score) throws IOException {
 
-        File file = new File("C:\\CS2450\\AndroidStudioProjects\\MemoryGame\\app\\src\\main\\assets");
+        Log.i("Custom_Dialog", text + " " + score);
+        File file = new File("scores.txt");
         Scanner inputFile = new Scanner(file);
 
         int pos = 0;

@@ -160,7 +160,6 @@ public class GameActivity8 extends AppCompatActivity implements PopupMenu.OnMenu
             }
             index++;
         }
-
     }
 
     private void updateModels(int index, MemoryCard card) {
@@ -297,6 +296,7 @@ public class GameActivity8 extends AppCompatActivity implements PopupMenu.OnMenu
 
     public void openDialog(View view) {
         Custom_Dialog custom_dialog = new Custom_Dialog();
+        custom_dialog.setScore(getScore());
         custom_dialog.show(getSupportFragmentManager(), null);
     }
 
