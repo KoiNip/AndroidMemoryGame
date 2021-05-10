@@ -44,32 +44,49 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        Intent intent;
+        Intent intent = null;
         switch(item.getItemId()) {
             case R.id.tile4:
+                intent = new Intent(this, GameActivity4.class);
+                startActivity(intent);
                 return true;
             case R.id.tile6:
+                intent = new Intent(this, GameActivity6.class);
+                startActivity(intent);
                 return true;
             case R.id.tile8:
-                intent = new Intent(this, GameActivity.class);
+                intent = new Intent(this, GameActivity8.class);
                 startActivity(intent);
                 return true;
             case R.id.tile10:
-                intent = new Intent(this, GameActivity12.class);
+                intent = new Intent(this, GameActivity10.class);
                 startActivity(intent);
                 return true;
             case R.id.tile12:
+                intent = new Intent(this, GameActivity12.class);
+                startActivity(intent);
                 return true;
             case R.id.tile14:
+                intent = new Intent(this, GameActivity14.class);
+                startActivity(intent);
                 return true;
             case R.id.tile16:
+                intent = new Intent(this, GameActivity16.class);
+                startActivity(intent);
                 return true;
             case R.id.tile18:
+                intent = new Intent(this, GameActivity18.class);
+                startActivity(intent);
                 return true;
             case R.id.tile20:
+                intent = new Intent(this, GameActivity20.class);
+                startActivity(intent);
+                return true;
+            default:
+                intent = new Intent(this, GameActivity8.class);
+                startActivity(intent);
                 return true;
         }
-        return false;
     }
 
     public void toggleMusic(View v) {

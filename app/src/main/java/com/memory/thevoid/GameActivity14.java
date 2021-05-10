@@ -15,14 +15,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity14 extends AppCompatActivity {
     private static Context context;
     int indexOfRevealedCard = -1;   //Stores location of currently revealed card, -1 if there is no currently revealed card
     static int score = 0;  //Stores score
     int numOfRevealedCards = 0;  //Stores the number of currently revealed cards, used for TryAgain button
 
     // Size could be initialized with a different value for larger or smaller decks
-    final int SIZE = 8;
+    final int SIZE = 14;
 
     //Create the necessary buttons
     ImageButton mButton1;
@@ -33,12 +33,19 @@ public class GameActivity extends AppCompatActivity {
     ImageButton mButton6;
     ImageButton mButton7;
     ImageButton mButton8;
+    ImageButton mButton9;
+    ImageButton mButton10;
+    ImageButton mButton11;
+    ImageButton mButton12;
+    ImageButton mButton13;
+    ImageButton mButton14;
     //Creates the "deck" of MemoryCard objects
-    MemoryCard[] deck = {new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard()};
+    MemoryCard[] deck = {new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(),
+            new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard()};
 
     //Create an array of the images, with two of each because we need pairs
-    Integer[] images = {R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast,
-            R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast};
+    Integer[] images = {R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast, R.drawable.ic_anchor, R.drawable.ic_sun, R.drawable.ic_corona,
+            R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast, R.drawable.ic_anchor, R.drawable.ic_sun, R.drawable.ic_corona};
 
     ImageButton[] buttons; //Create an array of ImageButtons
 
@@ -51,9 +58,9 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game8);
-        GameActivity.context = getApplicationContext();
-        final String TAG = "GameActivity";
+        setContentView(R.layout.activity_game14);
+        GameActivity14.context = getApplicationContext();
+        final String TAG = "GameActivity14";
 
         //Attach buttons to XML counterparts
         mButton1 = (ImageButton) findViewById(R.id.card_one);
@@ -64,6 +71,12 @@ public class GameActivity extends AppCompatActivity {
         mButton6 = (ImageButton) findViewById(R.id.card_six);
         mButton7 = (ImageButton) findViewById(R.id.card_seven);
         mButton8 = (ImageButton) findViewById(R.id.card_eight);
+        mButton9 = (ImageButton) findViewById(R.id.card_nine);
+        mButton10 = (ImageButton) findViewById(R.id.card_ten);
+        mButton11 = (ImageButton) findViewById(R.id.card_eleven);
+        mButton12 = (ImageButton) findViewById(R.id.card_twelve);
+        mButton13 = (ImageButton) findViewById(R.id.card_thirteen);
+        mButton14 = (ImageButton) findViewById(R.id.card_fourteen);
 
         // Initialize array of image buttons
         buttons = new ImageButton[SIZE];
@@ -75,6 +88,12 @@ public class GameActivity extends AppCompatActivity {
         buttons[5] = mButton6;
         buttons[6] = mButton7;
         buttons[7] = mButton8;
+        buttons[8] = mButton9;
+        buttons[9] = mButton10;
+        buttons[10] = mButton11;
+        buttons[11] = mButton12;
+        buttons[12] = mButton13;
+        buttons[13] = mButton14;
 
         //Attach other elements to XML counterparts
         mTryAgain = (Button) findViewById(R.id.try_again_button);
@@ -86,7 +105,7 @@ public class GameActivity extends AppCompatActivity {
         Collections.shuffle(imageList); //Randomizes the images, placing them in random places
         imageList.toArray(images);  //Places the shuffled images back into images[] array
 
-        if(savedInstanceState != null) {    //Restores the values after rotation
+        if(savedInstanceState != null) {
             images = (Integer[]) savedInstanceState.getSerializable("images");  //Restores all relevent values
             score = savedInstanceState.getInt("score");
             mScore.setText(savedInstanceState.getString("scoreView"));
@@ -224,12 +243,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {  //Saves values during rotation
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
         int index = 0;
-        boolean[] revealed = {false, false, false, false, false, false, false, false};
-        boolean[] matched = {false, false, false, false, false, false, false, false};
+        boolean[] revealed = {false, false, false, false, false, false, false, false, false, false, false, false, false, false};
+        boolean[] matched = {false, false, false, false, false, false, false, false, false, false, false, false, false, false};
         for(MemoryCard card : deck) {   //Stores the revealed and matched status of each card in an array
             revealed[index] = card.isRevealed();
             matched[index] = card.isMatched();
