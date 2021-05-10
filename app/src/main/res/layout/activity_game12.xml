@@ -12,7 +12,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/card_one"
+            android:id="@+id/card_one12"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:scaleType="centerCrop"
@@ -21,7 +21,7 @@
             tools:src="@drawable/ic_baseline" />
 
         <ImageButton
-            android:id="@+id/card_two"
+            android:id="@+id/card_two12"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:scaleType="centerCrop"
@@ -29,7 +29,7 @@
             android:text="@string/card_blank" />
 
         <ImageButton
-            android:id="@+id/card_three"
+            android:id="@+id/card_three12"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:scaleType="centerCrop"
@@ -37,14 +37,7 @@
             android:text="@string/card_blank" />
 
         <ImageButton
-            android:id="@+id/card_four"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_baseline"
-            android:text="@string/card_blank" />
-        <ImageButton
-            android:id="@+id/card_five"
+            android:id="@+id/card_four12"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:scaleType="centerCrop"
@@ -55,9 +48,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <ImageButton
-            android:id="@+id/card_six"
+            android:id="@+id/card_five12"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline"
+            android:text="@string/card_blank" />
+        <ImageButton
+            android:id="@+id/card_six12"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline"
+            android:text="@string/card_blank" />
+        <ImageButton
+            android:id="@+id/card_seven12"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:scaleType="centerCrop"
@@ -65,29 +71,40 @@
             android:text="@string/card_blank" />
 
         <ImageButton
-            android:id="@+id/card_seven"
+            android:id="@+id/card_eight12"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline"
             android:text="@string/card_blank" />
-
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <ImageButton
-            android:id="@+id/card_eight"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_baseline"
-            android:text="@string/card_blank" />
-        <ImageButton
-            android:id="@+id/card_nine"
+            android:id="@+id/card_nine12"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline"
             android:text="@string/card_blank" />
         <ImageButton
-            android:id="@+id/card_ten"
+            android:id="@+id/card_ten12"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline"
+            android:text="@string/card_blank" />
+        <ImageButton
+            android:id="@+id/card_eleven12"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline"
+            android:text="@string/card_blank" />
+        <ImageButton
+            android:id="@+id/card_twelve12"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:scaleType="centerCrop"

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -22,7 +23,7 @@ public class GameActivity12 extends AppCompatActivity {
     int numOfRevealedCards = 0;  //Stores the number of currently revealed cards, used for TryAgain button
 
     // Size could be initialized with a different value for larger or smaller decks
-    final int SIZE = 10;
+    final int SIZE = 12;
 
     //Create the necessary buttons
     ImageButton mButton1;
@@ -35,13 +36,15 @@ public class GameActivity12 extends AppCompatActivity {
     ImageButton mButton8;
     ImageButton mButton9;
     ImageButton mButton10;
+    ImageButton mButton11;
+    ImageButton mButton12;
     //Creates the "deck" of MemoryCard objects
-    MemoryCard[] deck = {new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(),
-            new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard()};
+    MemoryCard[] deck = {new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(),
+            new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard()};
 
     //Create an array of the images, with two of each because we need pairs
-    Integer[] images = {R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast, R.drawable.ic_anchor,
-            R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast, R.drawable.ic_anchor};
+    Integer[] images = {R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast, R.drawable.ic_anchor, R.drawable.ic_corona,
+            R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast, R.drawable.ic_anchor, R.drawable.ic_corona};
 
     ImageButton[] buttons1; //Create an array of ImageButtons
 
@@ -59,16 +62,18 @@ public class GameActivity12 extends AppCompatActivity {
         final String TAG = "GameActivity";
 
         //Attach buttons to XML counterparts
-        mButton1 = (ImageButton) findViewById(R.id.card_one);
-        mButton2 = (ImageButton) findViewById(R.id.card_two);
-        mButton3 = (ImageButton) findViewById(R.id.card_three);
-        mButton4 = (ImageButton) findViewById(R.id.card_four);
-        mButton5 = (ImageButton) findViewById(R.id.card_five);
-        mButton6 = (ImageButton) findViewById(R.id.card_six);
-        mButton7 = (ImageButton) findViewById(R.id.card_seven);
-        mButton8 = (ImageButton) findViewById(R.id.card_eight);
-        mButton9 = (ImageButton) findViewById(R.id.card_nine);
-        mButton10 = (ImageButton) findViewById(R.id.card_ten);
+        mButton1 = (ImageButton) findViewById(R.id.card_one12);
+        mButton2 = (ImageButton) findViewById(R.id.card_two12);
+        mButton3 = (ImageButton) findViewById(R.id.card_three12);
+        mButton4 = (ImageButton) findViewById(R.id.card_four12);
+        mButton5 = (ImageButton) findViewById(R.id.card_five12);
+        mButton6 = (ImageButton) findViewById(R.id.card_six12);
+        mButton7 = (ImageButton) findViewById(R.id.card_seven12);
+        mButton8 = (ImageButton) findViewById(R.id.card_eight12);
+        mButton9 = (ImageButton) findViewById(R.id.card_nine12);
+        mButton10 = (ImageButton) findViewById(R.id.card_ten12);
+        mButton11 = (ImageButton) findViewById(R.id.card_eleven12);
+        mButton12 = (ImageButton) findViewById(R.id.card_twelve12);
 
         // Initialize array of image buttons
         buttons1 = new ImageButton[SIZE];
@@ -82,6 +87,8 @@ public class GameActivity12 extends AppCompatActivity {
         buttons1[7] = mButton8;
         buttons1[8] = mButton9;
         buttons1[9] = mButton10;
+        buttons1[10] = mButton11;
+        buttons1[11] = mButton12;
 
         //Attach other elements to XML counterparts
         mTryAgain = (Button) findViewById(R.id.try_again_button);
@@ -112,6 +119,8 @@ public class GameActivity12 extends AppCompatActivity {
         for(int i = 0; i < buttons1.length; i++) {
             deck[i].setCardValue(images[i]); //Sets the value for each MemoryCard
         }
+
+        Log.i("GameActivity12", String.valueOf(buttons1.length));
 
         updateViews(buttons1);   //Updates views just in case there was a saved instance state
 
@@ -159,10 +168,10 @@ public class GameActivity12 extends AppCompatActivity {
         });
     }
 
-    private void updateViews(ImageButton[] buttons) {
+    private void updateViews(ImageButton[] buttons1) {
         int index = 0;
         for(MemoryCard card : deck) {
-            ImageButton button = buttons[index];
+            ImageButton button = buttons1[index];
             if(card.isRevealed()) {
                 button.setImageResource(card.getCardValue());    //Sets the image to the corresponding image in the images list
             }
