@@ -207,7 +207,7 @@ public class GameActivity6 extends AppCompatActivity implements PopupMenu.OnMenu
             mScore.setText(tempScore);  //...And display the score
             numOfRevealedCards++;   //When we reveal a card, increment the number of revealed cards
         }
-        if (deck[0].getMatches() == deck.length) {
+        if (gameEnded(deck)) {
             openDialog(this.getWindow().getDecorView());
             score = 0;
         }
@@ -296,5 +296,16 @@ public class GameActivity6 extends AppCompatActivity implements PopupMenu.OnMenu
 
     public static int getScore () {
         return score;
+    }
+
+    private boolean gameEnded(MemoryCard[] d) {
+        int num = SIZE;
+        int matches = 0;
+        for (MemoryCard card: d) {
+            if (card.isMatched())
+                matches++;
+        }
+
+        return num == matches;
     }
 }
