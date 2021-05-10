@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -17,13 +18,18 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class GameActivity8 extends AppCompatActivity {
+    private static Context context;
     int indexOfRevealedCard = -1;   //Stores location of currently revealed card, -1 if there is no currently revealed card
-    int score = 0;  //Stores score
+    static int score = 0;  //Stores score
     int numOfRevealedCards = 0;  //Stores the number of currently revealed cards, used for TryAgain button
 
     // Size could be initialized with a different value for larger or smaller decks
@@ -57,6 +63,7 @@ public class GameActivity8 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game8);
+        GameActivity8.context = getApplicationContext();
         final String TAG = "GameActivity8";
 
         //Attach buttons to XML counterparts
@@ -205,7 +212,7 @@ public class GameActivity8 extends AppCompatActivity {
         String tempScore;   //Stores the value of score in a string
         if(deck[index1].getCardValue().equals(deck[index2].getCardValue())) {   //If the cards match....
             Toast.makeText(this,"Match found!", Toast.LENGTH_SHORT).show(); //...notify the user....
-            score = score + 2;  //...Increment score by two...
+            score += 2;  //...Increment score by two...
             tempScore = String.valueOf(score);
             mScore.setText(tempScore);  //...Display the score...
             deck[index1].setMatched(true);
@@ -220,6 +227,10 @@ public class GameActivity8 extends AppCompatActivity {
             tempScore = String.valueOf(score);
             mScore.setText(tempScore);  //...And display the score
             numOfRevealedCards++;   //When we reveal a card, increment the number of revealed cards
+        }
+        if (deck[0].getMatches() == deck.length) {
+            openDialog(this.getWindow().getDecorView());
+            score = 0;
         }
     }
 
@@ -242,5 +253,14 @@ public class GameActivity8 extends AppCompatActivity {
         outState.putString("scoreView", mScore.getText().toString());
         outState.putSerializable("revealed", revealed);
         outState.putSerializable("matched", matched);
+    }
+
+    public void openDialog(View view) {
+        Custom_Dialog custom_dialog = new Custom_Dialog();
+        custom_dialog.show(getSupportFragmentManager(), null);
+    }
+
+    public static int getScore () {
+        return score;
     }
 }
