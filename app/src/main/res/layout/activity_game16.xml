@@ -182,7 +182,8 @@
         android:id="@+id/new_game_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_game_button"/>
+        android:text="@string/new_game_button"
+        android:onClick="showPopup"/>
     <Button
         android:id="@+id/end_game_button"
         android:layout_width="wrap_content"

@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +18,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class GameActivity18 extends AppCompatActivity {
+public class GameActivity18 extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
     private static Context context;
     int indexOfRevealedCard = -1;   //Stores location of currently revealed card, -1 if there is no currently revealed card
     static int score = 0;  //Stores score
@@ -168,13 +171,6 @@ public class GameActivity18 extends AppCompatActivity {
                 }
             }
         });
-        mNewGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                startActivity(getIntent()); //These two lines of code refresh the activity, effectively restarting it
-            }
-        });
         mEndGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -251,6 +247,61 @@ public class GameActivity18 extends AppCompatActivity {
         if (deck[0].getMatches() == deck.length) {
             openDialog(this.getWindow().getDecorView());
             score = 0;
+        }
+    }
+
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.popup_menu);
+        popup.show();
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        Intent intent = null;
+        switch(item.getItemId()) {
+            case R.id.tile4:
+                intent = new Intent(this, GameActivity4.class);
+                startActivity(intent);
+                return true;
+            case R.id.tile6:
+                intent = new Intent(this, GameActivity6.class);
+                startActivity(intent);
+                return true;
+            case R.id.tile8:
+                intent = new Intent(this, GameActivity8.class);
+                startActivity(intent);
+                return true;
+            case R.id.tile10:
+                intent = new Intent(this, GameActivity10.class);
+                startActivity(intent);
+                return true;
+            case R.id.tile12:
+                intent = new Intent(this, GameActivity12.class);
+                startActivity(intent);
+                return true;
+            case R.id.tile14:
+                intent = new Intent(this, GameActivity14.class);
+                startActivity(intent);
+                return true;
+            case R.id.tile16:
+                intent = new Intent(this, GameActivity16.class);
+                startActivity(intent);
+                return true;
+            case R.id.tile18:
+                intent = new Intent(this, GameActivity18.class);
+                startActivity(intent);
+                return true;
+            case R.id.tile20:
+                intent = new Intent(this, GameActivity20.class);
+                startActivity(intent);
+                return true;
+            default:
+                intent = new Intent(this, GameActivity8.class);
+                startActivity(intent);
+                return true;
         }
     }
 

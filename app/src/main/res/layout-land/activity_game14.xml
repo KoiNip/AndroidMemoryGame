@@ -44,6 +44,20 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline"
             android:text="@string/card_blank" />
+        <LinearLayout
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/score"/>
+            <TextView
+                android:id="@+id/score_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/initial_score"/>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -81,6 +95,11 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline"
             android:text="@string/card_blank" />
+        <Button
+            android:id="@+id/try_again_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/try_again_button"/>
 
     </LinearLayout>
     <LinearLayout
@@ -119,37 +138,44 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline"
             android:text="@string/card_blank" />
+        <Button
+            android:id="@+id/new_game_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_game_button"
+            android:onClick="showPopup"/>
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <TextView
+        <ImageButton
+            android:id="@+id/card_thirteen"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline"
+            android:text="@string/card_blank" />
+
+        <ImageButton
+            android:id="@+id/card_fourteen"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline"
+            android:text="@string/card_blank" />
+        <Button
+            android:id="@+id/end_game_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/score"/>
-        <TextView
-            android:id="@+id/score_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/initial_score"/>
+            android:text="@string/end_game_button"/>
+
     </LinearLayout>
-    <Button
-        android:id="@+id/try_again_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/try_again_button"/>
-    <Button
-        android:id="@+id/new_game_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/new_game_button"
-        android:onClick="showPopup"/>
-    <Button
-        android:id="@+id/end_game_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/end_game_button"/>
+
+
+
+
+
 
 </LinearLayout>
