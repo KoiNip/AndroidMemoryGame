@@ -48,7 +48,7 @@ public class Custom_Dialog extends AppCompatDialogFragment {
                         }
 
                         try {
-                            saveScore(username.getText().toString() + " " + GameActivity8.getScore(), GameActivity8.getScore());
+                            saveScore(username.getText().toString() + " " + GameActivity.getScore(), GameActivity.getScore());
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         } catch (IOException e) {

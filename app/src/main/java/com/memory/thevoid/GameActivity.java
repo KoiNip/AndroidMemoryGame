@@ -1,32 +1,21 @@
 package com.memory.thevoid;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class GameActivity8 extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
     private static Context context;
     int indexOfRevealedCard = -1;   //Stores location of currently revealed card, -1 if there is no currently revealed card
     static int score = 0;  //Stores score
@@ -63,8 +52,8 @@ public class GameActivity8 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game8);
-        GameActivity8.context = getApplicationContext();
-        final String TAG = "GameActivity8";
+        GameActivity.context = getApplicationContext();
+        final String TAG = "GameActivity";
 
         //Attach buttons to XML counterparts
         mButton1 = (ImageButton) findViewById(R.id.card_one);
