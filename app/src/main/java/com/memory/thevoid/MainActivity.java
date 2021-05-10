@@ -2,14 +2,17 @@ package com.memory.thevoid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     private Button mStartButton;
     private Button mHighScoreButton;
     private Button mToggleMusicButton;
@@ -29,14 +32,44 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mStartButton = (Button)findViewById(R.id.start_button);
-        mStartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, GameActivity.class);
-                startActivity(i);
-            }
-        });
+    }
+
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.popup_menu);
+        popup.show();
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        Intent intent;
+        switch(item.getItemId()) {
+            case R.id.tile4:
+                return true;
+            case R.id.tile6:
+                return true;
+            case R.id.tile8:
+                intent = new Intent(this, GameActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.tile10:
+                intent = new Intent(this, GameActivity12.class);
+                startActivity(intent);
+                return true;
+            case R.id.tile12:
+                return true;
+            case R.id.tile14:
+                return true;
+            case R.id.tile16:
+                return true;
+            case R.id.tile18:
+                return true;
+            case R.id.tile20:
+                return true;
+        }
+        return false;
     }
 
     public void toggleMusic(View v) {

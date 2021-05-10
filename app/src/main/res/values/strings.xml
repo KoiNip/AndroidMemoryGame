@@ -14,4 +14,13 @@
     <string name="end_game_button">END GAME</string>
     <string name="score">Score: </string>
     <string name="initial_score">0</string>
+    <string name="game_choice_4">4 tiles</string>
+    <string name="game_choice_6">6 tiles</string>
+    <string name="game_choice_8">8 tiles</string>
+    <string name="game_choice_10">10 tiles</string>
+    <string name="game_choice_12">12 tiles</string>
+    <string name="game_choice_14">14 tiles</string>
+    <string name="game_choice_16">16 tiles</string>
+    <string name="game_choice_18">18 tiles</string>
+    <string name="game_choice_20">20 tiles</string>
 </resources>
