@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/tile4"
+        android:title="@string/game_choice_4"/>
+    <item android:id="@+id/tile6"
+        android:title="@string/game_choice_6"/>
+    <item android:id="@+id/tile8"
+        android:title="@string/game_choice_8"/>
+    <item android:id="@+id/tile10"
+        android:title="@string/game_choice_10"/>
+    <item android:id="@+id/tile12"
+        android:title="@string/game_choice_12"/>
+    <item android:id="@+id/tile14"
+        android:title="@string/game_choice_14"/>
+    <item android:id="@+id/tile16"
+        android:title="@string/game_choice_16"/>
+    <item android:id="@+id/tile18"
+        android:title="@string/game_choice_18"/>
+    <item android:id="@+id/tile20"
+        android:title="@string/game_choice_20"/>
+</menu>
