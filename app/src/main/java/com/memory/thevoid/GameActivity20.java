@@ -50,8 +50,8 @@ public class GameActivity20 extends AppCompatActivity {
             new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard(), new MemoryCard()};
 
     //Create an array of the images, with two of each because we need pairs
-    Integer[] images = {R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast, R.drawable.ic_anchor, R.drawable.ic_sun, R.drawable.ic_corona, R.drawable.ic_cake, R.drawable.ic_moon, R.drawable.ic_baseline,
-            R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast, R.drawable.ic_anchor, R.drawable.ic_sun, R.drawable.ic_corona, R.drawable.ic_cake, R.drawable.ic_moon, R.drawable.ic_baseline};
+    Integer[] images = {R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast, R.drawable.ic_anchor, R.drawable.ic_sun, R.drawable.ic_corona, R.drawable.ic_cake, R.drawable.ic_moon, R.drawable.ic_pastry,
+            R.drawable.ic_android, R.drawable.ic_monkey, R.drawable.ic_blender, R.drawable.ic_toast, R.drawable.ic_anchor, R.drawable.ic_sun, R.drawable.ic_corona, R.drawable.ic_cake, R.drawable.ic_moon, R.drawable.ic_pastry};
 
     ImageButton[] buttons; //Create an array of ImageButtons
 

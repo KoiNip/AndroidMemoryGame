@@ -44,6 +44,14 @@
         android:orientation="horizontal">
 
         <ImageButton
+            android:id="@+id/card_four"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline"
+            android:text="@string/card_blank" />
+
+        <ImageButton
             android:id="@+id/card_five"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -53,14 +61,6 @@
 
         <ImageButton
             android:id="@+id/card_six"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_baseline"
-            android:text="@string/card_blank" />
-
-        <ImageButton
-            android:id="@+id/card_seven"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:scaleType="centerCrop"
