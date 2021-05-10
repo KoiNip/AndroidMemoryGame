@@ -90,7 +90,7 @@ public class GameActivity8 extends AppCompatActivity {
         Collections.shuffle(imageList); //Randomizes the images, placing them in random places
         imageList.toArray(images);  //Places the shuffled images back into images[] array
 
-        if(savedInstanceState != null) {
+        if(savedInstanceState != null) {    //Restores the values after rotation
             images = (Integer[]) savedInstanceState.getSerializable("images");  //Restores all relevent values
             score = savedInstanceState.getInt("score");
             mScore.setText(savedInstanceState.getString("scoreView"));
@@ -224,7 +224,7 @@ public class GameActivity8 extends AppCompatActivity {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {  //Saves values during rotation
         super.onSaveInstanceState(outState);
 
         int index = 0;
