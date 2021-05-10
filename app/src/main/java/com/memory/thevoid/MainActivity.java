@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         mStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, GameActivity.class);
+                Intent i = new Intent(MainActivity.this, GameActivity8.class);
                 startActivity(i);
             }
         });
