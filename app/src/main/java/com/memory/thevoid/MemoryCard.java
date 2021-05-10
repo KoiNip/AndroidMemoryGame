@@ -5,23 +5,26 @@ import android.view.View;
 import android.widget.Button;
 
 public class MemoryCard {
+    private static int matches;
     private Integer mCardValue;
     private boolean mRevealed = false;
     private boolean mMatched = false;
 
     public MemoryCard() {
+        matches = 0;
         mCardValue = null;
     }
 
     public MemoryCard(Integer value) {
+        matches = 0;
         mCardValue = value;
     }
 
-    public boolean isMatched(){
-        return mMatched;
+    public boolean isMatched() { return mMatched;
     }
 
-    public void setMatched(boolean match){
+    public void setMatched(boolean match) {
+        matches++;
         mMatched = match;
     }
 
@@ -39,5 +42,9 @@ public class MemoryCard {
 
     public void setCardValue(Integer cardValue) {
         mCardValue = cardValue;
+    }
+
+    public int getMatches() {
+        return matches;
     }
 }
