@@ -34,7 +34,6 @@ public class HighScoreDisplayActivity extends AppCompatActivity implements Popup
     Button selectBoard;
     String file_name;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,16 +43,12 @@ public class HighScoreDisplayActivity extends AppCompatActivity implements Popup
         score3 = (TextView) findViewById(R.id.score_3);
         selectBoard = (Button) findViewById(R.id.board_select);
 
-
-
         selectBoard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPopup(v);
-
             }
         });
-
     }
 
     public void showPopup(View v) {
@@ -67,17 +62,12 @@ public class HighScoreDisplayActivity extends AppCompatActivity implements Popup
         FileInputStream fis = null;
         try {
             String text;
-            String scoreOne;
-            String scoreTwo;
-            String scoreThree;
             int index = 0;
             fis = openFileInput(file_name);
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
 
             while((text = br.readLine()) != null) {
-                sb.append(text).append("\n");
                 if(index == 0) {
                     score1.setText(text);
                 }
@@ -86,6 +76,7 @@ public class HighScoreDisplayActivity extends AppCompatActivity implements Popup
                 }
                 if(index == 3) {
                     score3.setText(text);
+                    break;
                 }
                 index++;
             }

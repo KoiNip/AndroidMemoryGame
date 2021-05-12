@@ -316,12 +316,6 @@ public class GameActivity8 extends AppCompatActivity implements PopupMenu.OnMenu
         outState.putSerializable("matched", matched);
     }
 
-    public void openDialog(View view) {
-        Custom_Dialog custom_dialog = new Custom_Dialog();
-        custom_dialog.setScore(getScore());
-        custom_dialog.show(getSupportFragmentManager(), null);
-    }
-
     public static int getScore () {
         return score;
     }

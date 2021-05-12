@@ -10,9 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class HighScoreActivity extends AppCompatActivity {
     private static final String FILE_NAME4 = "scores4.txt";
@@ -50,10 +55,7 @@ public class HighScoreActivity extends AppCompatActivity {
     }
 
     public void save(View v, int gameSize, int score) {
-        String hs_initials = initials.getText().toString();
-        FileOutputStream fos = null;
         String file_name;
-        String final_write;
 
         switch(gameSize) {
             case 4:
@@ -88,6 +90,15 @@ public class HighScoreActivity extends AppCompatActivity {
                 break;
         }
 
+        write(file_name, score);
+
+    }
+
+    public void write(String file_name, int score) {
+        FileOutputStream fos = null;
+        String hs_initials = initials.getText().toString();
+        String final_write;
+
         final_write = hs_initials + " - " + score + "\n";
 
         try {
@@ -97,8 +108,76 @@ public class HighScoreActivity extends AppCompatActivity {
             initials.getText().clear();
             Toast.makeText(this, "Score saved!", Toast.LENGTH_SHORT).show();
             Log.i("HighScoreActivity", "Saved to " + getFilesDir() + "/" + file_name);
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if(fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            reorder(file_name, final_write, score);
+        }
+    }
+
+    private void reorder(String file_name, String input, int score) {
+        FileInputStream fis = null;
+        System.out.println("Inside reorder: " + input);
+
+        try {
+            fis = openFileInput(file_name);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            String text;
+            StringBuilder sb = new StringBuilder();
+            int i = 0, pos = Integer.MAX_VALUE;
+            while ((text = br.readLine()) != null) {
+                sb.append(text).append("\n");
+                Log.i("Debug", text);
+                System.out.println(text.substring(text.length()-1) + " " + text.length());
+                int fileScore = Integer.parseInt(text.substring(text.length() - 1));
+                if (fileScore < score && pos > i) {
+                    pos = i;
+                }
+                i++;
+            }
+            if (pos != Integer.MAX_VALUE) {
+                rewrite(input, sb.toString(), file_name, pos);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void rewrite(String input, String content, String file_name, int pos) {
+        FileOutputStream fos = null;
+        try {
+            fos = openFileOutput(file_name, 0);
+            String text;
+            String[] str = content.split("\n");
+            int i = 0;
+            while (i < str.length - 1 && (text = str[i]) != null) {
+                if (i == pos) {
+                    fos.write(input.getBytes());
+                    fos.write("\n".getBytes());
+                }
+
+                fos.write(text.getBytes());
+                fos.write("\n".getBytes());
+                i++;
+            }
+
+            Log.i("HighScoreActivity", "Reordered and rewritten to " + getFilesDir() + "/" + file_name);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -110,6 +189,5 @@ public class HighScoreActivity extends AppCompatActivity {
                 }
             }
         }
-
     }
 }
