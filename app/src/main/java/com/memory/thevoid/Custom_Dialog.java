@@ -28,7 +28,6 @@ import java.util.Scanner;
 public class Custom_Dialog extends AppCompatDialogFragment {
 
     private EditText username;
-    private int score = 0;
 
     @NonNull
     @Override
@@ -50,7 +49,7 @@ public class Custom_Dialog extends AppCompatDialogFragment {
                         }
 
                         try {
-                            saveScore(username.getText().toString() + " " + score, score);
+                            saveScore(username.getText().toString() + " " + GameActivity8.getScore(), GameActivity8.getScore());
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         } catch (IOException e) {
@@ -64,15 +63,11 @@ public class Custom_Dialog extends AppCompatDialogFragment {
         return builder.create();
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     public void saveScore(String text, int score) throws IOException {
-
-        Log.i("Custom_Dialog", text + " " + score);
-        File file = new File("scores.txt");
+        File file = new File("MemoryGame\\app\\src\\main\\assets\\scores.txt");
+        Log.i("Custom_Dialog", text);
         Scanner inputFile = new Scanner(file);
+        //fos = openFileOutput(FILE_NAME, MODE_APPEND);
 
         int pos = 0;
         while (inputFile.hasNext()) {

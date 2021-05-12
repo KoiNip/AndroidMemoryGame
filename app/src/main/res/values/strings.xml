@@ -23,4 +23,9 @@
     <string name="game_choice_16">16 tiles</string>
     <string name="game_choice_18">18 tiles</string>
     <string name="game_choice_20">20 tiles</string>
+    <string name="high_score_title">CONGRATULATIONS! You completed the game!</string>
+    <string name="high_score_enter">Please enter your initials</string>
+    <string name="back_to_main">Submit</string>
+    <string name="empty_entry">--------</string>
+    <string name="select_board">Select game board</string>
 </resources>
