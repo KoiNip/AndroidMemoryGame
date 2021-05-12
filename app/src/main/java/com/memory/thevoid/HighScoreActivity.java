@@ -134,7 +134,7 @@ public class HighScoreActivity extends AppCompatActivity {
             int fileScore = 0;
             StringBuilder sb = new StringBuilder();
             int i = 0, pos = Integer.MAX_VALUE;
-            while ((text = br.readLine()) != null) {
+            while ((text = br.readLine()) != null && text.length() != 0) {
                 sb.append(text).append("\n");
                 if (i % 2 == 1) {
                     strScore = text;
