@@ -50,7 +50,6 @@ public class HighScoreDisplayActivity extends AppCompatActivity implements Popup
             @Override
             public void onClick(View v) {
                 showPopup(v);
-
             }
         });
 
@@ -81,10 +80,10 @@ public class HighScoreDisplayActivity extends AppCompatActivity implements Popup
                 if(index == 0) {
                     score1.setText(text);
                 }
-                if(index == 2) {
+                if(index == 1) {
                     score2.setText(text);
                 }
-                if(index == 3) {
+                if(index == 2) {
                     score3.setText(text);
                 }
                 index++;

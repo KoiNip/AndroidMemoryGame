@@ -176,6 +176,12 @@ public class GameActivity10 extends AppCompatActivity implements PopupMenu.OnMen
 
     }
 
+    @Override
+    public void onBackPressed() {
+        score = 0;
+        super.onBackPressed();
+    }
+
     private void updateModels(int index, MemoryCard card) {
         if(card.isRevealed()) { //If the card is revealed, don't let them choose it again
             Toast.makeText(this, "Invalid move!", Toast.LENGTH_SHORT).show();
@@ -249,56 +255,66 @@ public class GameActivity10 extends AppCompatActivity implements PopupMenu.OnMen
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        Intent intent = null;
+        Intent i = null;
         switch(item.getItemId()) {
             case R.id.tile4:
-                intent = new Intent(this, GameActivity4.class);
-                startActivity(intent);
+                i = new Intent(this, GameActivity4.class);
+                startActivity(i);
+                score = 0;
                 finish();
                 return true;
             case R.id.tile6:
-                intent = new Intent(this, GameActivity6.class);
-                startActivity(intent);
+                i = new Intent(this, GameActivity6.class);
+                startActivity(i);
+                score = 0;
                 finish();
                 return true;
             case R.id.tile8:
-                intent = new Intent(this, GameActivity8.class);
-                startActivity(intent);
+                i = new Intent(this, GameActivity8.class);
+                startActivity(i);
+                score = 0;
                 finish();
                 return true;
             case R.id.tile10:
-                intent = new Intent(this, GameActivity10.class);
-                startActivity(intent);
+                i = new Intent(this, GameActivity10.class);
+                startActivity(i);
+                score = 0;
                 finish();
                 return true;
             case R.id.tile12:
-                intent = new Intent(this, GameActivity12.class);
-                startActivity(intent);
+                i = new Intent(this, GameActivity12.class);
+                startActivity(i);
+                score = 0;
                 finish();
                 return true;
             case R.id.tile14:
-                intent = new Intent(this, GameActivity14.class);
-                startActivity(intent);
+                i = new Intent(this, GameActivity14.class);
+                startActivity(i);
+                score = 0;
                 finish();
                 return true;
             case R.id.tile16:
-                intent = new Intent(this, GameActivity16.class);
-                startActivity(intent);
+                i = new Intent(this, GameActivity16.class);
+                startActivity(i);
+                score = 0;
                 finish();
                 return true;
             case R.id.tile18:
-                intent = new Intent(this, GameActivity18.class);
-                startActivity(intent);
+                i = new Intent(this, GameActivity18.class);
+                startActivity(i);
+                score = 0;
                 finish();
                 return true;
             case R.id.tile20:
-                intent = new Intent(this, GameActivity20.class);
-                startActivity(intent);
+                i = new Intent(this, GameActivity20.class);
+                startActivity(i);
+                score = 0;
                 finish();
                 return true;
             default:
-                intent = new Intent(this, GameActivity8.class);
-                startActivity(intent);
+                i = new Intent(this, GameActivity8.class);
+                startActivity(i);
+                score = 0;
                 finish();
                 return true;
         }

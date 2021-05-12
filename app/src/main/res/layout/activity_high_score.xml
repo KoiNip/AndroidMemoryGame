@@ -9,15 +9,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="15dp"
         android:text="@string/high_score_title"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20dp"
         android:text="@string/high_score_enter"/>
     <EditText
         android:id="@+id/initals_hs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxLength="3"
+        android:inputType="text"
+        android:digits="0,1,2,3,4,5,6,7,8,9,*,qwertzuiopasdfghjklyxcvbnm,_,-"
         />
     <Button
         android:id="@+id/back_button"
