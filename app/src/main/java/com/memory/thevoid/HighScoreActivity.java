@@ -108,6 +108,7 @@ public class HighScoreActivity extends AppCompatActivity {
             initials.getText().clear();
             Toast.makeText(this, "Score saved!", Toast.LENGTH_SHORT).show();
             Log.i("HighScoreActivity", "Saved to " + getFilesDir() + "/" + file_name);
+            reorder(file_name, final_write, score);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -118,13 +119,11 @@ public class HighScoreActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-            reorder(file_name, final_write, score);
         }
     }
 
     private void reorder(String file_name, String input, int score) {
         FileInputStream fis = null;
-        System.out.println("Inside reorder: " + input);
 
         try {
             fis = openFileInput(file_name);
@@ -135,9 +134,8 @@ public class HighScoreActivity extends AppCompatActivity {
             int i = 0, pos = Integer.MAX_VALUE;
             while ((text = br.readLine()) != null) {
                 sb.append(text).append("\n");
-                Log.i("Debug", text);
-                System.out.println(text.substring(text.length()-1) + " " + text.length());
-                int fileScore = Integer.parseInt(text.substring(text.length() - 1));
+                String strScore = text.substring(text.length() - 1);
+                int fileScore = Integer.parseInt(strScore);
                 if (fileScore < score && pos > i) {
                     pos = i;
                 }
