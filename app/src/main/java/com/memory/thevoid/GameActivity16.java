@@ -20,6 +20,7 @@ import java.util.List;
 
 public class GameActivity16 extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
     private static Context context;
+    private boolean endPressed = false;
     int indexOfRevealedCard = -1;   //Stores location of currently revealed card, -1 if there is no currently revealed card
     static int score = 0;  //Stores score
     int numOfRevealedCards = 0;  //Stores the number of currently revealed cards, used for TryAgain button
@@ -168,7 +169,12 @@ public class GameActivity16 extends AppCompatActivity implements PopupMenu.OnMen
         mEndGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                endPressed = true;
+                for(MemoryCard card : deck) {
+                    card.setMatched(true);
+                    card.setRevealed(true);
+                }
+                updateViews(buttons);
             }
         });
     }
@@ -238,10 +244,17 @@ public class GameActivity16 extends AppCompatActivity implements PopupMenu.OnMen
             mScore.setText(tempScore);  //...And display the score
             numOfRevealedCards++;   //When we reveal a card, increment the number of revealed cards
         }
-        if (gameEnded(deck)) {
-            openDialog(this.getWindow().getDecorView());
+        if (gameEnded(deck) && !endPressed) {
+            openHighScore();
             score = 0;
         }
+    }
+
+    public void openHighScore() {
+        Intent intent = new Intent(this, HighScoreActivity.class);
+        intent.putExtra("com.memory.thevoid.score", score);
+        intent.putExtra("com.memory.thevoid.gamesize", 16);
+        startActivity(intent);
     }
 
     public void showPopup(View v) {
@@ -259,42 +272,52 @@ public class GameActivity16 extends AppCompatActivity implements PopupMenu.OnMen
             case R.id.tile4:
                 intent = new Intent(this, GameActivity4.class);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.tile6:
                 intent = new Intent(this, GameActivity6.class);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.tile8:
                 intent = new Intent(this, GameActivity8.class);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.tile10:
                 intent = new Intent(this, GameActivity10.class);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.tile12:
                 intent = new Intent(this, GameActivity12.class);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.tile14:
                 intent = new Intent(this, GameActivity14.class);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.tile16:
                 intent = new Intent(this, GameActivity16.class);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.tile18:
                 intent = new Intent(this, GameActivity18.class);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.tile20:
                 intent = new Intent(this, GameActivity20.class);
                 startActivity(intent);
+                finish();
                 return true;
             default:
                 intent = new Intent(this, GameActivity8.class);
                 startActivity(intent);
+                finish();
                 return true;
         }
     }

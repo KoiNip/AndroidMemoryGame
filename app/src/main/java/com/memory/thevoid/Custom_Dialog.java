@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -63,9 +64,10 @@ public class Custom_Dialog extends AppCompatDialogFragment {
     }
 
     public void saveScore(String text, int score) throws IOException {
-
-        File file = new File("C:\\CS2450\\AndroidStudioProjects\\MemoryGame\\app\\src\\main\\assets");
+        File file = new File("MemoryGame\\app\\src\\main\\assets\\scores.txt");
+        Log.i("Custom_Dialog", text);
         Scanner inputFile = new Scanner(file);
+        //fos = openFileOutput(FILE_NAME, MODE_APPEND);
 
         int pos = 0;
         while (inputFile.hasNext()) {

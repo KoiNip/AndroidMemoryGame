@@ -32,6 +32,14 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             }
         });
 
+        mHighScoreButton = (Button) findViewById(R.id.hs_button);
+        mHighScoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, HighScoreDisplayActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     public void showPopup(View v) {
