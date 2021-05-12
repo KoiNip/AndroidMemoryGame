@@ -74,7 +74,7 @@ public class HighScoreDisplayActivity extends AppCompatActivity implements Popup
                 if(index == 2) {
                     score2.setText(text);
                 }
-                if(index == 3) {
+                if(index == 4) {
                     score3.setText(text);
                     break;
                 }

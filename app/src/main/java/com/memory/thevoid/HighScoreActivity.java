@@ -104,6 +104,7 @@ public class HighScoreActivity extends AppCompatActivity {
         try {
             fos = openFileOutput(file_name, MODE_APPEND);
             fos.write(final_write.getBytes());
+            fos.write(String.valueOf(score).getBytes());
 
             initials.getText().clear();
             Toast.makeText(this, "Score saved!", Toast.LENGTH_SHORT).show();
@@ -129,20 +130,23 @@ public class HighScoreActivity extends AppCompatActivity {
             fis = openFileInput(file_name);
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
-            String text;
+            String text, strScore;
+            int fileScore = 0;
             StringBuilder sb = new StringBuilder();
             int i = 0, pos = Integer.MAX_VALUE;
             while ((text = br.readLine()) != null) {
                 sb.append(text).append("\n");
-                String strScore = text.substring(text.length() - 1);
-                int fileScore = Integer.parseInt(strScore);
-                if (fileScore < score && pos > i) {
-                    pos = i;
+                if (i % 2 == 1) {
+                    strScore = text;
+                    fileScore = Integer.parseInt(strScore);
+                    if (fileScore < score && pos > i) {
+                        pos = i;
+                    }
                 }
                 i++;
             }
             if (pos != Integer.MAX_VALUE) {
-                rewrite(input, sb.toString(), file_name, pos);
+                rewrite(input, String.valueOf(score), sb.toString(), file_name, pos);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -157,16 +161,19 @@ public class HighScoreActivity extends AppCompatActivity {
         }
     }
 
-    private void rewrite(String input, String content, String file_name, int pos) {
-        FileOutputStream fos = null;
+    private void rewrite(String input1, String input2, String content, String file_name, int pos) {
+        FileOutputStream fos;
+
         try {
             fos = openFileOutput(file_name, 0);
             String text;
             String[] str = content.split("\n");
             int i = 0;
-            while (i < str.length - 1 && (text = str[i]) != null) {
+            while (i < str.length - 2 && (text = str[i]) != null) {
                 if (i == pos) {
-                    fos.write(input.getBytes());
+                    fos.write(input1.getBytes());
+                    fos.write("\n".getBytes());
+                    fos.write(input2.getBytes());
                     fos.write("\n".getBytes());
                 }
 
@@ -178,14 +185,6 @@ public class HighScoreActivity extends AppCompatActivity {
             Log.i("HighScoreActivity", "Reordered and rewritten to " + getFilesDir() + "/" + file_name);
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if(fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 }
